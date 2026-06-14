@@ -1,13 +1,6 @@
 #pragma once
 
-#include <windows.h>
 #include <string>
-
-enum class LangID
-{
-    EN,
-    JA
-};
 
 struct LangStrings
 {
@@ -74,10 +67,6 @@ struct LangStrings
     std::wstring menuAbout;
     std::wstring menuCheckUpdates;
 
-    std::wstring menuLanguage;
-    std::wstring menuLangEnglish;
-    std::wstring menuLangJapanese;
-
     std::wstring dialogFind;
     std::wstring dialogFindReplace;
     std::wstring dialogGoTo;
@@ -114,10 +103,4 @@ struct LangStrings
     std::wstring lineEndingCR;
 };
 
-void InitLanguage();
-void SetLanguage(LangID lang);
-void SaveLanguageSetting();
-LangID LoadLanguageSetting();
-LangID GetCurrentLanguage();
 const LangStrings &GetLangStrings();
-const std::wstring &GetString(const std::wstring &key);

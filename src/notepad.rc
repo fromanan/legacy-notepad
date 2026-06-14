@@ -1,7 +1,7 @@
 #include "resource.h"
 #include <windows.h>
 
-IDI_NOTEPAD ICON "icon.ico"
+IDI_NOTEPAD ICON "notepad.ico"
 
 IDR_MAINMENU MENU
 BEGIN
@@ -85,11 +85,6 @@ BEGIN
             MENUITEM "&Change Icon...", IDM_VIEW_ICON_CHANGE
             MENUITEM "&Reset to Default", IDM_VIEW_ICON_RESET
         END
-    END
-    POPUP "&Language"
-    BEGIN
-        MENUITEM "&English", IDM_VIEW_LANG_EN
-        MENUITEM "&Japanese", IDM_VIEW_LANG_JA
     END
     POPUP "&Help"
     BEGIN

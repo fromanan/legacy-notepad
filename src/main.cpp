@@ -80,7 +80,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         ApplyFont();
         SetupStatusBarParts();
         UpdateMenuStrings();
-        UpdateLanguageMenu();
         CheckMenuItem(GetMenu(g_hwndMain), IDM_VIEW_ALWAYSONTOP, g_state.alwaysOnTop ? MF_CHECKED : MF_UNCHECKED);
         if (g_state.alwaysOnTop)
             SetWindowPos(g_hwndMain, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
@@ -418,30 +417,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         case IDM_VIEW_BG_POS_FILL:
             SetBackgroundPosition(BgPosition::Fill);
             break;
-        case IDM_VIEW_LANG_EN:
-            if (g_hwndFindDlg)
-            {
-                DestroyWindow(g_hwndFindDlg);
-                g_hwndFindDlg = nullptr;
-            }
-            SetLanguage(LangID::EN);
-            UpdateMenuStrings();
-            UpdateLanguageMenu();
-            UpdateTitle();
-            UpdateStatus();
-            break;
-        case IDM_VIEW_LANG_JA:
-            if (g_hwndFindDlg)
-            {
-                DestroyWindow(g_hwndFindDlg);
-                g_hwndFindDlg = nullptr;
-            }
-            SetLanguage(LangID::JA);
-            UpdateMenuStrings();
-            UpdateLanguageMenu();
-            UpdateTitle();
-            UpdateStatus();
-            break;
         case IDM_VIEW_ICON_CHANGE:
             ViewChangeIcon();
             break;
@@ -551,7 +526,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, LPWSTR lpCmdLine, int nCmdShow)
 {
-    InitLanguage();
     typedef BOOL(WINAPI * fnSetProcessDpiAwarenessContext)(DPI_AWARENESS_CONTEXT);
     HMODULE hUser32 = GetModuleHandleW(L"user32.dll");
     if (hUser32)

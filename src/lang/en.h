@@ -66,10 +66,6 @@ inline LangStrings g_langEN = {
     L"&About Notepad",
     L"&Check for Updates",
 
-    L"&Language",
-    L"&English",
-    L"&Japanese",
-
     L"Find",
     L"Find and Replace",
     L"Go To Line",

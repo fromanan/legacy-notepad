@@ -15,8 +15,7 @@ void UpdateMenuStrings()
     ModifyMenuW(hMenu, 1, MF_BYPOSITION | MF_STRING | MF_POPUP, reinterpret_cast<UINT_PTR>(GetSubMenu(hMenu, 1)), lang.menuEdit.c_str());
     ModifyMenuW(hMenu, 2, MF_BYPOSITION | MF_STRING | MF_POPUP, reinterpret_cast<UINT_PTR>(GetSubMenu(hMenu, 2)), lang.menuFormat.c_str());
     ModifyMenuW(hMenu, 3, MF_BYPOSITION | MF_STRING | MF_POPUP, reinterpret_cast<UINT_PTR>(GetSubMenu(hMenu, 3)), lang.menuView.c_str());
-    ModifyMenuW(hMenu, 4, MF_BYPOSITION | MF_STRING | MF_POPUP, reinterpret_cast<UINT_PTR>(GetSubMenu(hMenu, 4)), lang.menuLanguage.c_str());
-    ModifyMenuW(hMenu, 5, MF_BYPOSITION | MF_STRING | MF_POPUP, reinterpret_cast<UINT_PTR>(GetSubMenu(hMenu, 5)), lang.menuHelp.c_str());
+    ModifyMenuW(hMenu, 4, MF_BYPOSITION | MF_STRING | MF_POPUP, reinterpret_cast<UINT_PTR>(GetSubMenu(hMenu, 4)), lang.menuHelp.c_str());
 
     HMENU hFileMenu = GetSubMenu(hMenu, 0);
     if (hFileMenu)
@@ -96,14 +95,7 @@ void UpdateMenuStrings()
         ModifyMenuW(hViewMenu, 10, MF_BYPOSITION | MF_STRING, IDM_VIEW_ALWAYSONTOP, lang.menuAlwaysOnTop.c_str());
     }
 
-    HMENU hLangMenu = GetSubMenu(hMenu, 4);
-    if (hLangMenu)
-    {
-        ModifyMenuW(hLangMenu, 0, MF_BYPOSITION | MF_STRING, IDM_VIEW_LANG_EN, lang.menuLangEnglish.c_str());
-        ModifyMenuW(hLangMenu, 1, MF_BYPOSITION | MF_STRING, IDM_VIEW_LANG_JA, lang.menuLangJapanese.c_str());
-    }
-
-    HMENU hHelpMenu = GetSubMenu(hMenu, 5);
+    HMENU hHelpMenu = GetSubMenu(hMenu, 4);
     if (hHelpMenu)
     {
         ModifyMenuW(hHelpMenu, 0, MF_BYPOSITION | MF_STRING, IDM_HELP_CHECKUPDATES, lang.menuCheckUpdates.c_str());
@@ -111,19 +103,4 @@ void UpdateMenuStrings()
     }
 
     DrawMenuBar(g_hwndMain);
-}
-
-void UpdateLanguageMenu()
-{
-    HMENU hMenu = GetMenu(g_hwndMain);
-    if (!hMenu)
-        return;
-
-    HMENU hLangMenu = GetSubMenu(hMenu, 4);
-    if (!hLangMenu)
-        return;
-
-    LangID currentLang = GetCurrentLanguage();
-    CheckMenuItem(hLangMenu, IDM_VIEW_LANG_EN, (currentLang == LangID::EN) ? MF_CHECKED : MF_UNCHECKED);
-    CheckMenuItem(hLangMenu, IDM_VIEW_LANG_JA, (currentLang == LangID::JA) ? MF_CHECKED : MF_UNCHECKED);
 }
